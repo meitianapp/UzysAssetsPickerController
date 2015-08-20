@@ -58,7 +58,7 @@ static CGFloat thumnailLength;
 - (void)applyData:(ALAsset *)asset
 {
     self.asset  = asset;
-    self.image  = [UIImage imageWithCGImage:asset.thumbnail];
+    self.image  = [UIImage imageWithCGImage:asset.aspectRatioThumbnail];
     self.type   = [asset valueForProperty:ALAssetPropertyType];
     self.title  = [UzysAssetsViewCell getTimeStringOfTimeInterval:[[asset valueForProperty:ALAssetPropertyDuration] doubleValue]];
 }
@@ -99,7 +99,16 @@ static CGFloat thumnailLength;
 - (void)drawRect:(CGRect)rect
 {
     // Image
-    [self.image drawInRect:CGRectMake(-.5f, -1.0f, thumnailLength+1.5f, thumnailLength+1.0f)];
+    CGFloat width;
+    CGFloat height;
+    if (self.image.size.width < self.image.size.height) {
+        width = thumnailLength;
+        height = (thumnailLength / self.image.size.width) * self.image.size.height;
+    } else {
+        width = (thumnailLength / self.image.size.height) * self.image.size.width;
+        height = thumnailLength;
+    }
+    [self.image drawInRect:CGRectMake(-.5f, -1.0f, width+1.5f, height+1.0f)];
     
     // Video title
     if ([self.type isEqual:ALAssetTypeVideo])
@@ -135,8 +144,8 @@ static CGFloat thumnailLength;
     if (self.selected)
     {
         CGContextRef context    = UIGraphicsGetCurrentContext();
-		CGContextSetFillColorWithColor(context, selectedColor.CGColor);
-		CGContextFillRect(context, rect);
+        CGContextSetFillColorWithColor(context, selectedColor.CGColor);
+        CGContextFillRect(context, rect);
         [checkedIcon drawAtPoint:CGPointMake(CGRectGetMaxX(rect) - checkedIcon.size.width -2, CGRectGetMinY(rect)+2)];
     }
     else
@@ -157,8 +166,8 @@ static CGFloat thumnailLength;
     unsigned int uFlags =
     NSSecondCalendarUnit | NSMinuteCalendarUnit | NSHourCalendarUnit |
     NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit;
-
     
+
     NSDateComponents *components = [calendar components:uFlags
                                                fromDate:dateRef
                                                  toDate:dateNow
