@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AssetsViewCellIdentifier" id="q4F-vd-5Ws" customClass="UzysAssetsViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kZn-Mc-mzq" userLabel="main">
+                        <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EVr-v4-aAA" userLabel="check">
+                        <rect key="frame" x="35" y="0.0" width="25" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="25" id="11k-Kn-abt"/>
+                            <constraint firstAttribute="height" constant="25" id="Jr1-V6-GG3"/>
+                        </constraints>
+                    </imageView>
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UzysAssetPickerController.bundle/uzysAP_ico_assets_video" translatesAutoresizingMaskIntoConstraints="NO" id="n3t-WV-6ZQ" userLabel="video">
+                        <rect key="frame" x="0.0" y="45" width="15" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="15" id="C1M-Kq-lTa"/>
+                            <constraint firstAttribute="width" constant="15" id="rTJ-2c-UGs"/>
+                        </constraints>
+                    </imageView>
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rBP-lU-t4Y" userLabel="time">
+                        <rect key="frame" x="57.5" y="57.5" width="0.0" height="0.0"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <constraints>
+                <constraint firstItem="kZn-Mc-mzq" firstAttribute="top" secondItem="q4F-vd-5Ws" secondAttribute="top" id="F8f-uL-XgH"/>
+                <constraint firstAttribute="bottom" secondItem="kZn-Mc-mzq" secondAttribute="bottom" id="GrY-N1-JYX"/>
+                <constraint firstItem="n3t-WV-6ZQ" firstAttribute="leading" secondItem="q4F-vd-5Ws" secondAttribute="leading" id="NFX-X8-eiJ"/>
+                <constraint firstAttribute="bottom" secondItem="n3t-WV-6ZQ" secondAttribute="bottom" id="cys-8b-HEM"/>
+                <constraint firstItem="EVr-v4-aAA" firstAttribute="top" secondItem="q4F-vd-5Ws" secondAttribute="top" id="dcd-Vj-2Na"/>
+                <constraint firstItem="rBP-lU-t4Y" firstAttribute="top" secondItem="q4F-vd-5Ws" secondAttribute="top" id="k0G-CW-fXI"/>
+                <constraint firstItem="kZn-Mc-mzq" firstAttribute="leading" secondItem="q4F-vd-5Ws" secondAttribute="leading" id="k9n-9q-9yX"/>
+                <constraint firstAttribute="trailing" secondItem="kZn-Mc-mzq" secondAttribute="trailing" id="pPq-1N-8HU"/>
+                <constraint firstAttribute="trailing" secondItem="EVr-v4-aAA" secondAttribute="trailing" id="uQb-fy-lKv"/>
+                <constraint firstAttribute="trailing" secondItem="rBP-lU-t4Y" secondAttribute="trailing" constant="2" id="vto-2w-k0j"/>
+                <constraint firstAttribute="bottom" secondItem="rBP-lU-t4Y" secondAttribute="bottom" constant="2" id="y6Y-lr-zEw"/>
+            </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="k0G-CW-fXI"/>
+                </mask>
+            </variation>
+            <connections>
+                <outlet property="checkImageView" destination="EVr-v4-aAA" id="yS9-wt-zKi"/>
+                <outlet property="thumnailImageView" destination="kZn-Mc-mzq" id="ol2-1X-o73"/>
+                <outlet property="timeLabel" destination="rBP-lU-t4Y" id="NJ1-Sf-M1q"/>
+                <outlet property="videoMark" destination="n3t-WV-6ZQ" id="wPX-Fc-U2e"/>
+            </connections>
+            <point key="canvasLocation" x="501" y="385"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="UzysAssetPickerController.bundle/uzysAP_ico_assets_video" width="15" height="15"/>
+    </resources>
+</document>

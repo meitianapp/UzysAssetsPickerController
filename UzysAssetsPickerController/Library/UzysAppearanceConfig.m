@@ -80,4 +80,19 @@
     return _finishSelectionButtonColor;
 }
 
+- (UIColor *)navigationTopColor
+{
+    if (!_navigationTopColor) {
+        return [UIColor colorWithRed:0.968627451 green:0.968627451 blue:0.968627451 alpha:1];
+    }
+    return _navigationTopColor;
+}
+
+- (UIFont *)titleFont
+{
+    if (!_titleFont) {
+        return [UIFont systemFontOfSize:18.f];
+    }
+    return _titleFont;
+}
 @end

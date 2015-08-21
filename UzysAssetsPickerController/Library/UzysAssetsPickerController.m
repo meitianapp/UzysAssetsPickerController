@@ -22,6 +22,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelSelectedMedia;
 @property (weak, nonatomic) IBOutlet UIButton *btnCamera;
 @property (weak, nonatomic) IBOutlet UIButton *btnClose;
+@property (weak, nonatomic) IBOutlet UILabel *albumLabel;
+
 
 @property (nonatomic, strong) UIView *noAssetView;
 @property (nonatomic, strong) UICollectionView *collectionView;
@@ -147,10 +149,13 @@
     self.btnDone.layer.cornerRadius = 15;
     self.btnDone.clipsToBounds = YES;
     [self.btnDone setBackgroundColor:appearanceConfig.finishSelectionButtonColor];
-    
+    self.albumLabel.font = appearanceConfig.titleFont;
+    self.navigationTop.backgroundColor = appearanceConfig.navigationTopColor;
     UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 0.5)];
     lineView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.15f];
     [self.bottomView addSubview:lineView];
+    [self.btnTitle setTitle:NSLocalizedStringFromTable(@"Choose Album", @"UzysAssetsPickerController", nil) forState:UIControlStateNormal];
+    [self.btnTitle setTitleEdgeInsets:UIEdgeInsetsMake(5, 0, 0, 0)];
 }
 - (void)setupGroupPickerview
 {
@@ -205,9 +210,9 @@
             self.segmentedControl.hidden = YES;
             self.labelSelectedMedia.hidden = NO;
             if(_maximumNumberOfSelection >1)
-                self.labelSelectedMedia.text = NSLocalizedStringFromTable(@"选择图片", @"UzysAssetsPickerController", nil);
+                self.labelSelectedMedia.text = NSLocalizedStringFromTable(@"Choose photos", @"UzysAssetsPickerController", nil);
             else
-                self.labelSelectedMedia.text = NSLocalizedStringFromTable(@"选择图片", @"UzysAssetsPickerController", nil);
+                self.labelSelectedMedia.text = NSLocalizedStringFromTable(@"Choose a photo", @"UzysAssetsPickerController", nil);
         }
         else
         {
@@ -233,9 +238,7 @@
   
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 64, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - 64 -48) collectionViewLayout:layout];
     self.collectionView.allowsMultipleSelection = YES;
-    [self.collectionView registerClass:[UzysAssetsViewCell class]
-            forCellWithReuseIdentifier:kAssetsViewCellIdentifier];
-    
+    [self.collectionView registerNib:[UINib nibWithNibName:@"UzysAssetsViewCell" bundle:nil]forCellWithReuseIdentifier:kAssetsViewCellIdentifier];
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     self.collectionView.backgroundColor = [UIColor whiteColor];
@@ -355,9 +358,6 @@
         strongSelf.btnDone.enabled = NO;
         strongSelf.btnCamera.enabled = NO;
         [strongSelf setTitle:NSLocalizedStringFromTable(@"Not Allowed", @"UzysAssetsPickerController",nil)];
-        //        [self.btnTitle setTitle:NSLocalizedStringFromTable(@"Not Allowed", @"UzysAssetsPickerController",nil) forState:UIControlStateNormal];
-        [strongSelf.btnTitle setImage:nil forState:UIControlStateNormal];
-        
     };
     
     [self.assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll
@@ -368,7 +368,6 @@
 - (void)setupAssets:(voidBlock)successBlock
 {
     self.title = [self.assetsGroup valueForProperty:ALAssetsGroupPropertyName];
-    
     if (!self.assets)
         self.assets = [[NSMutableArray alloc] init];
     else
@@ -866,10 +865,7 @@
 - (void)setTitle:(NSString *)title
 {
     [super setTitle:title];
-    [self.btnTitle setTitle:title forState:UIControlStateNormal];
-    [self.btnTitle setImageEdgeInsets:UIEdgeInsetsMake(5, 0, 0, 0)];
-    [self.btnTitle setTitleEdgeInsets:UIEdgeInsetsMake(5, 0, 0, 0)];
-    [self.btnTitle layoutIfNeeded];
+    self.albumLabel.text = title;
 }
 - (void)menuArrowRotate
 {

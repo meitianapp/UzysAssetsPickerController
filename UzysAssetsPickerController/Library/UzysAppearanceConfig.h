@@ -21,5 +21,8 @@
 @property (nonatomic, assign) NSInteger assetsCountInALine;
 @property (nonatomic, assign) CGFloat cellSpacing;
 
+@property (nonatomic, strong) UIColor *navigationTopColor;
+@property (nonatomic, strong) UIFont *titleFont;
+
 + (instancetype)sharedConfig;
 @end
