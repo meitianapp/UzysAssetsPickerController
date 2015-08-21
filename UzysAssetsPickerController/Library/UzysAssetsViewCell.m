@@ -15,6 +15,12 @@
 @property (nonatomic, copy) NSString *type;
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, strong) UIImage *videoImage;
+@property (weak, nonatomic) IBOutlet UIImageView *thumnailImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *checkImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *videoMark;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+
+
 @end
 @implementation UzysAssetsViewCell
 
@@ -61,15 +67,20 @@ static CGFloat thumnailLength;
     self.image  = [UIImage imageWithCGImage:asset.aspectRatioThumbnail];
     self.type   = [asset valueForProperty:ALAssetPropertyType];
     self.title  = [UzysAssetsViewCell getTimeStringOfTimeInterval:[[asset valueForProperty:ALAssetPropertyDuration] doubleValue]];
+    self.thumnailImageView.image = self.image;
+    self.checkImageView.image = self.selected ? checkedIcon : uncheckedIcon;
+    BOOL isVideo = [self.type isEqual:ALAssetTypeVideo];
+    self.videoMark.hidden = !isVideo;
+    self.timeLabel.hidden = !isVideo;
+    if (isVideo) {
+        self.timeLabel.text = self.title;
+    }
 }
 
-- (void)setSelected:(BOOL)selected
-{
-    [super setSelected:selected];
-    [self setNeedsDisplay];
-    
+- (void)toggleSelected:(BOOL)selected {
     if(selected)
     {
+        self.checkImageView.image = checkedIcon;
         [UIView animateWithDuration:0.1 delay:0.0 options:UIViewAnimationOptionCurveEaseIn|UIViewAnimationOptionAllowUserInteraction animations:^{
             self.transform = CGAffineTransformMakeScale(0.97, 0.97);
         } completion:^(BOOL finished) {
@@ -82,6 +93,7 @@ static CGFloat thumnailLength;
     }
     else
     {
+        self.checkImageView.image = uncheckedIcon;
         [UIView animateWithDuration:0.1 delay:0.0 options:UIViewAnimationOptionCurveEaseIn|UIViewAnimationOptionAllowUserInteraction animations:^{
             self.transform = CGAffineTransformMakeScale(1.03, 1.03);
         } completion:^(BOOL finished) {
@@ -94,67 +106,6 @@ static CGFloat thumnailLength;
         
     }
 }
-
-
-- (void)drawRect:(CGRect)rect
-{
-    // Image
-    CGFloat width;
-    CGFloat height;
-    if (self.image.size.width < self.image.size.height) {
-        width = thumnailLength;
-        height = (thumnailLength / self.image.size.width) * self.image.size.height;
-    } else {
-        width = (thumnailLength / self.image.size.height) * self.image.size.width;
-        height = thumnailLength;
-    }
-    [self.image drawInRect:CGRectMake(-.5f, -1.0f, width+1.5f, height+1.0f)];
-    
-    // Video title
-    if ([self.type isEqual:ALAssetTypeVideo])
-    {
-        // Create a gradient from transparent to black
-        CGFloat colors [] =
-        {
-            0.0, 0.0, 0.0, 0.0,
-            0.0, 0.0, 0.0, 0.8,
-            0.0, 0.0, 0.0, 1.0
-        };
-        
-        CGFloat locations [] = {0.0, 0.75, 1.0};
-        
-        CGColorSpaceRef baseSpace   = CGColorSpaceCreateDeviceRGB();
-        CGGradientRef gradient      = CGGradientCreateWithColorComponents(baseSpace, colors, locations, 2);
-        CGContextRef context    = UIGraphicsGetCurrentContext();
-        
-        CGFloat height          = rect.size.height;
-        CGPoint startPoint      = CGPointMake(CGRectGetMidX(rect), height - videoTimeHeight);
-        CGPoint endPoint        = CGPointMake(CGRectGetMidX(rect), CGRectGetMaxY(rect));
-        
-        CGContextDrawLinearGradient(context, gradient, startPoint, endPoint, kCGGradientDrawsBeforeStartLocation);
-        
-        NSDictionary *attributes = @{NSFontAttributeName:videoTimeFont,NSForegroundColorAttributeName:videoTitleColor};
-        CGSize titleSize        = [self.title sizeWithAttributes:attributes];
-        [self.title drawInRect:CGRectMake(rect.size.width - (NSInteger)titleSize.width - 2 , startPoint.y + (videoTimeHeight - 12) / 2, thumnailLength, height) withAttributes:attributes];
-        
-        [videoIcon drawAtPoint:CGPointMake(2, startPoint.y + (videoTimeHeight - videoIcon.size.height) / 2)];
-        
-    }
-    
-    if (self.selected)
-    {
-        CGContextRef context    = UIGraphicsGetCurrentContext();
-        CGContextSetFillColorWithColor(context, selectedColor.CGColor);
-        CGContextFillRect(context, rect);
-        [checkedIcon drawAtPoint:CGPointMake(CGRectGetMaxX(rect) - checkedIcon.size.width -2, CGRectGetMinY(rect)+2)];
-    }
-    else
-    {
-        [uncheckedIcon drawAtPoint:CGPointMake(CGRectGetMaxX(rect) - uncheckedIcon.size.width -2, CGRectGetMinY(rect)+2)];
-        
-    }
-}
-
 
 + (NSString *)getTimeStringOfTimeInterval:(NSTimeInterval)timeInterval
 {

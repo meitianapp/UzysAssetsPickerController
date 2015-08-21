@@ -75,9 +75,24 @@
 - (UIColor *)finishSelectionButtonColor
 {
     if (!_finishSelectionButtonColor) {
-        return [UIColor redColor];
+        return [UIColor colorWithRed:0.992156863 green:0.82745098 blue:0.145098039 alpha:1];
     }
     return _finishSelectionButtonColor;
 }
 
+- (UIColor *)navigationTopColor
+{
+    if (!_navigationTopColor) {
+        return [UIColor colorWithRed:0.968627451 green:0.968627451 blue:0.968627451 alpha:1];
+    }
+    return _navigationTopColor;
+}
+
+- (UIFont *)titleFont
+{
+    if (!_titleFont) {
+        return [UIFont systemFontOfSize:18.f];
+    }
+    return _titleFont;
+}
 @end

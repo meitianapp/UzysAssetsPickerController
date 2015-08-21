@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		34801A381B86CD4600155B71 /* UzysAssetsViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34801A371B86CD4600155B71 /* UzysAssetsViewCell.xib */; };
 		95080AE419CC508900E69F29 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95080AE319CC508900E69F29 /* Launch Screen.xib */; };
 		953E13B719A2CAE30012B4D9 /* UzysAssetPickerController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 953E13B619A2CAE30012B4D9 /* UzysAssetPickerController.bundle */; };
 		956BBB55193460220017396E /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 956BBB54193460220017396E /* AVFoundation.framework */; };
@@ -47,6 +48,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		34801A371B86CD4600155B71 /* UzysAssetsViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UzysAssetsViewCell.xib; sourceTree = "<group>"; };
 		95080AE319CC508900E69F29 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		953E13B619A2CAE30012B4D9 /* UzysAssetPickerController.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = UzysAssetPickerController.bundle; sourceTree = "<group>"; };
 		956BBB54193460220017396E /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -197,23 +199,24 @@
 		95F4439318AB4B840088FC13 /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				953E13B619A2CAE30012B4D9 /* UzysAssetPickerController.bundle */,
-				95F443B118AB716E0088FC13 /* UzysWrapperPickerController.h */,
-				95F443B218AB716E0088FC13 /* UzysWrapperPickerController.m */,
-				95F4439418AB4BBA0088FC13 /* UzysAssetsPickerController.h */,
-				95F4439518AB4BBA0088FC13 /* UzysAssetsPickerController.m */,
-				95F4439618AB4BBA0088FC13 /* UzysAssetsPickerController.xib */,
-				95F443A318AB5C0D0088FC13 /* UzysAssetsPickerController_Configuration.h */,
-				95F4439B18AB57B30088FC13 /* UzysAssetsViewCell.h */,
-				95F4439C18AB57B30088FC13 /* UzysAssetsViewCell.m */,
 				CCE0A1C319AC197F00A5BE3A /* UIImage+UzysExtension.h */,
 				CCE0A1C419AC197F00A5BE3A /* UIImage+UzysExtension.m */,
 				CCE0A1C619AC1F0200A5BE3A /* UzysAppearanceConfig.h */,
 				CCE0A1C719AC1F0200A5BE3A /* UzysAppearanceConfig.m */,
+				953E13B619A2CAE30012B4D9 /* UzysAssetPickerController.bundle */,
+				95F443A318AB5C0D0088FC13 /* UzysAssetsPickerController_Configuration.h */,
+				95F4439418AB4BBA0088FC13 /* UzysAssetsPickerController.h */,
+				95F4439518AB4BBA0088FC13 /* UzysAssetsPickerController.m */,
+				95F4439618AB4BBA0088FC13 /* UzysAssetsPickerController.xib */,
+				95F4439B18AB57B30088FC13 /* UzysAssetsViewCell.h */,
+				95F4439C18AB57B30088FC13 /* UzysAssetsViewCell.m */,
+				34801A371B86CD4600155B71 /* UzysAssetsViewCell.xib */,
 				95F443BD18AC606B0088FC13 /* UzysGroupPickerView.h */,
 				95F443BE18AC606B0088FC13 /* UzysGroupPickerView.m */,
 				95F443C018AC62D10088FC13 /* UzysGroupViewCell.h */,
 				95F443C118AC62D10088FC13 /* UzysGroupViewCell.m */,
+				95F443B118AB716E0088FC13 /* UzysWrapperPickerController.h */,
+				95F443B218AB716E0088FC13 /* UzysWrapperPickerController.m */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -266,10 +269,8 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = Uzys;
 				TargetAttributes = {
-					95F4435A18AB4AEF0088FC13 = {
-						DevelopmentTeam = MHWCC4PMZP;
-					};
 					95F4437B18AB4AEF0088FC13 = {
+						DevelopmentTeam = C4C8KL22WZ;
 						TestTargetID = 95F4435A18AB4AEF0088FC13;
 					};
 				};
@@ -304,6 +305,7 @@
 				953E13B719A2CAE30012B4D9 /* UzysAssetPickerController.bundle in Resources */,
 				95F4439818AB4BBA0088FC13 /* UzysAssetsPickerController.xib in Resources */,
 				95080AE419CC508900E69F29 /* Launch Screen.xib in Resources */,
+				34801A381B86CD4600155B71 /* UzysAssetsViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,6 +460,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UzysAssetsPickerController/UzysAssetsPickerController-Prefix.pch";
 				INFOPLIST_FILE = "UzysAssetsPickerController/UzysAssetsPickerController-Info.plist";
@@ -472,6 +475,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UzysAssetsPickerController/UzysAssetsPickerController-Prefix.pch";
 				INFOPLIST_FILE = "UzysAssetsPickerController/UzysAssetsPickerController-Info.plist";
@@ -485,6 +489,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/UzysAssetsPickerController.app/UzysAssetsPickerController";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -498,6 +504,7 @@
 				);
 				INFOPLIST_FILE = "UzysAssetsPickerControllerTests/UzysAssetsPickerControllerTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -507,6 +514,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/UzysAssetsPickerController.app/UzysAssetsPickerController";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -516,6 +525,7 @@
 				GCC_PREFIX_HEADER = "UzysAssetsPickerController/UzysAssetsPickerController-Prefix.pch";
 				INFOPLIST_FILE = "UzysAssetsPickerControllerTests/UzysAssetsPickerControllerTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
