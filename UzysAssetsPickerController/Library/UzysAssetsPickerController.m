@@ -611,6 +611,8 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    UzysAssetsViewCell *cell = (UzysAssetsViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    [cell toggleSelected:YES];
     ALAsset *selectedAsset = [self.assets objectAtIndex:indexPath.item];
     [self.orderedSelectedItem addObject:selectedAsset];
     [self setAssetsCountWithSelectedIndexPaths:collectionView.indexPathsForSelectedItems];
@@ -618,8 +620,9 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    UzysAssetsViewCell *cell = (UzysAssetsViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    [cell toggleSelected:NO];
     ALAsset *deselectedAsset = [self.assets objectAtIndex:indexPath.item];
-    
     [self.orderedSelectedItem removeObject:deselectedAsset];
     [self setAssetsCountWithSelectedIndexPaths:collectionView.indexPathsForSelectedItems];
 }
@@ -630,12 +633,7 @@
 - (void)finishPickingAssets
 {
     NSMutableArray *assets = [[NSMutableArray alloc] initWithArray:self.orderedSelectedItem];
-    //
-    //    for (NSIndexPath *index in self.orderedSelectedItem)
-    //    {
-    //        [assets addObject:[self.assets objectAtIndex:index.item]];
-    //    }
-    //
+
     if([assets count]>0)
     {
         UzysAssetsPickerController *picker = (UzysAssetsPickerController *)self;
@@ -916,13 +914,18 @@
             break;
         case kTagButtonClose:
         {
-            if([self.delegate respondsToSelector:@selector(uzysAssetsPickerControllerDidCancel:)])
-            {
-                [self.delegate uzysAssetsPickerControllerDidCancel:self];
+            if (self.groupPicker.isOpen) {
+                [self.groupPicker toggle];
+                [self menuArrowRotate];
+            } else {
+                if([self.delegate respondsToSelector:@selector(uzysAssetsPickerControllerDidCancel:)])
+                {
+                    [self.delegate uzysAssetsPickerControllerDidCancel:self];
+                }
+                [self dismissViewControllerAnimated:YES completion:^{
+                    
+                }];
             }
-            [self dismissViewControllerAnimated:YES completion:^{
-                
-            }];
         }
             break;
         case kTagButtonGroupPicker:

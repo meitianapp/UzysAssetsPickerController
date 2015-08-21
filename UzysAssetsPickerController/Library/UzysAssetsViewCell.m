@@ -68,7 +68,7 @@ static CGFloat thumnailLength;
     self.type   = [asset valueForProperty:ALAssetPropertyType];
     self.title  = [UzysAssetsViewCell getTimeStringOfTimeInterval:[[asset valueForProperty:ALAssetPropertyDuration] doubleValue]];
     self.thumnailImageView.image = self.image;
-    self.checkImageView.image = uncheckedIcon;
+    self.checkImageView.image = self.selected ? checkedIcon : uncheckedIcon;
     BOOL isVideo = [self.type isEqual:ALAssetTypeVideo];
     self.videoMark.hidden = !isVideo;
     self.timeLabel.hidden = !isVideo;
@@ -77,9 +77,7 @@ static CGFloat thumnailLength;
     }
 }
 
-- (void)setSelected:(BOOL)selected
-{
-    [super setSelected:selected];
+- (void)toggleSelected:(BOOL)selected {
     if(selected)
     {
         self.checkImageView.image = checkedIcon;
